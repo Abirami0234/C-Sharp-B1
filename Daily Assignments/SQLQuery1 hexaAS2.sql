@@ -54,8 +54,12 @@ select empno,ename,sal from emp where sal between 1200 and 1400
 
 --4.Give all the employees in the RESEARCH department a 10% pay rise. 
 --Verify that this has been done by listing all their details before and after the rise. 
---select empno,ename,sal,(sal*1.10) 'Annual Salary' from emp where deptno = 20
-
+select empno, ename, sal 'Current Salary', 
+       (e.sal * 1.1) 'New Salary', d.dname 
+from emp e 
+join dept d on e.deptno = d.deptno 
+where d.dname = 'RESEARCH'
+	
 --5.Find the number of CLERKS employed. Give it a descriptive heading. 
 select count(*)  'Number of Clerks' from emp where job = 'CLERK'
 
@@ -73,12 +77,16 @@ select * from dept where deptno not in (select distinct deptno from emp)
 select ename, sal from emp where job = 'ANALYST' and sal > 1200 and deptno = 20 order by ename asc;
 
 --10.For each department, list its name and number together with the total salary paid to employees in that department. 
---select dname, deptno, (select sum(sal) from emp where emp.deptno = dept.deptno)'Total Salary' from dept
+select d.deptno, d.dname, sum(e.sal) as 'Total Salary' 
+from emp e 
+join dept d on e.deptno = d.deptno 
+group by d.deptno, d.dname
+
 
 --11.Find out salary of both MILLER and SMITH.
 select ename, sal from emp where ename ='MILLER'or ename = 'SMITH'
 
---12.Find out the names of the employees whose name begin with ‘A’ or ‘M’
+--12.Find out the names of the employees whose name begin with â€˜Aâ€™ or â€˜Mâ€™
 select ename from emp where ename like 'A%' or ename like 'M%'
 
 --13.Compute yearly salary of SMITH. 
@@ -88,5 +96,8 @@ select ename, (sal * 12)'Yearly Salary' from emp where ename = 'SMITH'
 select ename, sal from emp where sal not between 1500 and 2850
 
 --15.Find all managers who have more than 2 employees reporting to them
---select mgr_id as 'Manager ID', (select ename from emp where empno = e.mgr_id) as manager_name, count(*) 'Number of Employees'
---from emp e where mgr_id is not null group by mgr_id having count(*) > 2
+select mgr_id as 'Manager ID',
+       count(empno) as 'Number of Employees'
+from emp 
+group by mgr_id
+having count(empno) > 2
