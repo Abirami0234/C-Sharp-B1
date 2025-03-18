@@ -27,27 +27,6 @@ balance decimal(12,2)
  transaction_date date
  )
 
-
- -- insert customers
-insert into customers (first_name, last_name, dob, email, phone_number, address)
-values 
-('john', 'doe', '1990-05-15', 'john.doe@example.com', '9876543210', '123 main st, city'),
-('alice', 'smith', '1985-09-20', 'alice.smith@example.com', '8765432109', '456 elm st, town');
-
--- insert accounts
-insert into accounts (customer_id, account_type, balance)
-values 
-(1, 'savings', 5000.00),
-(1, 'current', 20000.00),
-(2, 'zero_balance', 0.00);
-
--- insert transactions
-insert into transactions (account_id, transaction_type, amount)
-values 
-(1001, 'deposit', 5000.00),
-(1002, 'withdrawal', 2000.00),
-(1003, 'transfer', 1000.00);
-
 --Task.2.
 
 
