@@ -255,6 +255,42 @@ left join
 on d.account_id = w.account_id;
 
 --3.10
+select account_id, avg(balance) as avg_daily_balance 
+from accounts 
+where account_id in 
+    (select distinct account_id from transactions 
+     where transaction_date >= dateadd(day, -30, getdate())) 
+group by account_id
+
+--3.11
+
+select account_type, sum(balance) as 'Total balance'
+from accounts
+group by account_type
+
+--3.12
+
+select account_id, count(transaction_id) as transaction_count
+from transactions
+group by account_id
+order by transaction_count desc
+
+--3.13
+
+select c.customer_id, c.first_name + ' ' + c.last_name as full_name, a.account_type, sum(a.balance) as total_balance
+from accounts a
+join customers c on a.customer_id = c.customer_id
+group by c.customer_id, c.first_name, c.last_name, a.account_type
+having sum(a.balance) > 10000
+
+--3.14
+
+select account_id, amount, transaction_date, count(*) as duplicate_count
+from transactions
+group by account_id, amount, transaction_date
+having count(*) > 1
+
+	
 --Task. 4
 
 --4.1
