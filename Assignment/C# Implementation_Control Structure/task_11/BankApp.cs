@@ -88,7 +88,7 @@ namespace Banking_System
             Console.Write("Enter Initial Balance: ");
             float balance = float.Parse(Console.ReadLine());
 
-            var customer = new task10_Customer(id, firstName, lastName, email, phone ,address); // long accNo, string accType, float balance, task10_Customer customer
+            var customer = new task10_Customer(id, firstName, lastName, email, phone ,address); 
             Console.Write("Enter Account Number: ");
             long accNo = long.Parse(Console.ReadLine());
             string accType = "";
@@ -109,7 +109,7 @@ namespace Banking_System
                     return;
             }
 
-            bankService.create_account(accNo, accType,balance,customer); // accNo auto-generated
+            bankService.create_account(accNo, accType,balance,customer); 
         }
 
         static void Deposit(BankServiceProviderImpl bankService)
