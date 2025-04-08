@@ -79,23 +79,23 @@ namespace Banking_System
                 }
                 catch (InvalidAccountException ex)
                 {
-                    Console.WriteLine($"❌ Invalid Account: {ex.Message}");
+                    Console.WriteLine($"Invalid Account: {ex.Message}");
                 }
                 catch (InsufficientFundException ex)
                 {
-                    Console.WriteLine($"❌ Insufficient Funds: {ex.Message}");
+                    Console.WriteLine($" Insufficient Funds: {ex.Message}");
                 }
                 catch (OverDraftLimitExceededException ex)
                 {
-                    Console.WriteLine($"❌ Overdraft Denied: {ex.Message}");
+                    Console.WriteLine($" Overdraft Denied: {ex.Message}");
                 }
                 catch (NullReferenceException)
                 {
-                    Console.WriteLine("❌ Error: Some value was null. Please try again.");
+                    Console.WriteLine(" Error: Some value was null. Please try again.");
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"❌ Unexpected Error: {ex.Message}");
+                    Console.WriteLine($" Unexpected Error: {ex.Message}");
                 }
             }
 
