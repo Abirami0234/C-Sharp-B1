@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Banking_System
 {
-    // Custom comparer to check uniqueness by AccountNumber
+   
     public class AccountComparer : IEqualityComparer<AbstractAccount>
     {
         public bool Equals(AbstractAccount? x, AbstractAccount? y)
@@ -19,7 +19,7 @@ namespace Banking_System
         }
     }
 
-    // For sorting based on customer name
+    
     public class CustomerNameComparer : IComparer<AbstractAccount>
     {
         public int Compare(AbstractAccount? x, AbstractAccount? y)
