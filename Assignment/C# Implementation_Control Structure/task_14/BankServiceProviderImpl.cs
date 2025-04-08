@@ -28,7 +28,7 @@ namespace Banking_System
             }
             else if (accType.Equals("Current", StringComparison.OrdinalIgnoreCase))
             {
-                newAccount = new CurrentAccount(balance, 10000, customer); // Assuming ₹10,000 overdraft
+                newAccount = new CurrentAccount(balance, 10000, customer); 
             }
             else if (accType.Equals("ZeroBalance", StringComparison.OrdinalIgnoreCase))
             {
