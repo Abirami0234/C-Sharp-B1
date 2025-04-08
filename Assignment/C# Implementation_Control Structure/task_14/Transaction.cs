@@ -7,7 +7,7 @@ namespace Banking_System
         public long AccountNumber { get; set; }
         public string Description { get; set; }
         public DateTime TransactionDate { get; set; }
-        public string TransactionType { get; set; } // Withdraw, Deposit, Transfer
+        public string TransactionType { get; set; } 
         public float TransactionAmount { get; set; }
 
         public Transaction() { }
