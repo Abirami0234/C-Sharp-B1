@@ -82,10 +82,10 @@ namespace Banking_System
                 if (!accountList.ContainsKey(from_account_number) || !accountList.ContainsKey(to_account_number))
                     throw new Exception("One or both account numbers are invalid.");
 
-                // Try withdrawing first
+                
                 float withdrawn = withdraw(from_account_number, amount);
 
-                // If withdrawal succeeds, deposit
+                
                 float newBalance = deposit(to_account_number, amount);
 
                 Console.WriteLine($"Transferred ₹{amount} from A/C {from_account_number} to A/C {to_account_number}.");
