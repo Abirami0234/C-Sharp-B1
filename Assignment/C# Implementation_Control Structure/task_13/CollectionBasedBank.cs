@@ -10,7 +10,7 @@ namespace Banking_System
 
         public void create_account(long accNo, string accType, float balance, task10_Customer customer)
         {
-            // Prevent duplicates
+            
             if (accountList.Any(acc => acc.AccountNumber == accNo))
             {
                 Console.WriteLine("Account already exists with this account number.");
