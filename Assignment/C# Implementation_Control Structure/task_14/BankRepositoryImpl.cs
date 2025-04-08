@@ -144,19 +144,19 @@ namespace Banking_System
 
                 float toBalance = getAccountBalance(toAccountNumber);
 
-                // Withdraw from sender
+                
                 SqlCommand withdrawCmd = new SqlCommand("UPDATE Account SET AccountBalance = @NewBal WHERE AccountNumber = @AccNo", conn, transaction);
                 withdrawCmd.Parameters.AddWithValue("@NewBal", fromBalance - amount);
                 withdrawCmd.Parameters.AddWithValue("@AccNo", fromAccountNumber);
                 withdrawCmd.ExecuteNonQuery();
 
-                // Deposit to receiver
+                
                 SqlCommand depositCmd = new SqlCommand("UPDATE Account SET AccountBalance = @NewBal WHERE AccountNumber = @AccNo", conn, transaction);
                 depositCmd.Parameters.AddWithValue("@NewBal", toBalance + amount);
                 depositCmd.Parameters.AddWithValue("@AccNo", toAccountNumber);
                 depositCmd.ExecuteNonQuery();
 
-                // Log transactions
+                
                 InsertTransaction(fromAccountNumber, "Transfer", $"Transferred to {toAccountNumber}", amount, conn, transaction);
                 InsertTransaction(toAccountNumber, "Transfer", $"Received from {fromAccountNumber}", amount, conn, transaction);
 
