@@ -27,7 +27,7 @@ namespace Banking_System
             else
                 throw new ArgumentException("Invalid account type.");
 
-            account.SetAccountNumber(accNo); // Allow setting acc number manually for collection-based banks
+            account.SetAccountNumber(accNo); 
 
             accountList.Add(account);
             Console.WriteLine("Account created successfully using List.");
@@ -120,7 +120,7 @@ namespace Banking_System
 
         public List<Transaction> getTransations(long accNo, DateTime fromDate, DateTime toDate)
         {
-            // Placeholder for DB-supported feature; currently returns empty list
+           
             Console.WriteLine("Transaction history not supported in ListBasedBank.");
             return new List<Transaction>();
         }
