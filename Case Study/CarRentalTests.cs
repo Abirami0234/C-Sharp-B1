@@ -70,21 +70,17 @@ namespace CarConnect
        
         public void TestGetAvailableVehicles()
         {
-            // Clear existing vehicles (if needed)
-            // _vehicleService.RemoveVehicle(201);
-            // _vehicleService.RemoveVehicle(202);
-
-            // Add test vehicles through the service
+           
             vehicleService.AddVehicle(new Vehicle(201, "Swift", "Maruti", 2021, "Grey", "TN12Z1212", true, 1300.00m));
             vehicleService.AddVehicle(new Vehicle(202, "City", "Honda", 2019, "Black", "TN13A2323", false, 1800.00m));
 
-            // Get available vehicles through the service
+            
             var available = vehicleService.GetAvailableVehicles();
 
             Console.WriteLine("Available count: " + available.Count);
             foreach (var v in available)
                 Console.WriteLine($"ID: {v.VehicleID}, Available: {v.IsAvailable}, Model: {v.Model}");
-            // Assert
+            
             Assert.IsTrue(available.Exists(v => v.VehicleID == 201));
             Assert.IsFalse(available.Exists(v => v.VehicleID == 202));
         }
