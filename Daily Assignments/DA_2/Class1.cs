@@ -20,20 +20,13 @@ namespace Assignment_1_Inheritance_
         }
     }
 
-    // class FurtherDerived : DerivedClass
-    // {
-    //     public override void Show() ❌ Error: Cannot override sealed method
-    //     {
-    //         Console.WriteLine("Attempting to Override Sealed Method");
-    //     }
-    // }
-
+    
     class Program
     {
         static void Main()
         {
             DerivedClass obj = new DerivedClass();
-            obj.Show();  // Output: Sealed Method in Derived Class
+            obj.Show(); 
         }
     }
 }
