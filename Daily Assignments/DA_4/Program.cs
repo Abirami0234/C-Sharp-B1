@@ -1,119 +1,112 @@
-﻿namespace Assignment_2_4
+﻿namespace Assignment_1_4
 {
     using System;
 
+    public class TimePeriod
+    {
+        private int _seconds;
 
-    
-        public class Employee
+        public TimePeriod(int seconds = 0)
         {
-            //declare properties
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public string Job { get; set; }
-            public double Salary { get; set; }
-
-            //constructor
-            public Employee(int Id, string Name, string Job, double Salary)
-            {
-                this.Id = Id;
-                this.Name = Name;
-                this.Job = Job;
-                this.Salary = Salary;
-            }
-
-            //declare an indexer with interger as parameter to define position
-            public object this[int index]
-            {
-                get
-                {
-                    if (index == 0)
-                        return Id;
-                    else if (index == 1)
-                        return Name;
-                    else if (index == 2)
-                        return Job;
-                    else if (index == 3)
-                        return Salary;
-                    else
-                        return null;
-                }
-                set
-                {
-                    if (index == 0)
-                        Id = Convert.ToInt32(value);
-                    else if (index == 1)
-                        Name = value.ToString().ToUpper();
-                    else if (index == 2)
-                        Job = value.ToString();
-                    else if (index == 3)
-                        Salary = Convert.ToDouble(value);
-                }
-            }
-
-            //overloading an indexer 
-
-            public object this[string s]
-            {
-                get
-                {
-                    if (s == "Id")
-                        return Id;
-                    else if (s == "Name")
-                        return Name;
-                    else if (s == "Job")
-                        return Job;
-                    else if (s == "Salary")
-                        return Salary;
-                    else
-                        return null;
-                }
-                set
-                {
-                    if (s == "Id")
-                        Id = Convert.ToInt32(value);
-                    else if (s == "Name")
-                        Name = value.ToString().ToUpper();
-                    else if (s == "Job")
-                        Job = value.ToString();
-                    else if (s == "Salary")
-                        Salary = Convert.ToDouble(value);
-                }
-            }
+            _seconds = seconds;
         }
-        internal class IndexersEg
+
+        // Property to get and set time in hours
+        public double Hours
         {
-            public static void Main()
-            {
-                //create employee instance
-                Employee emp = new Employee(101, "Makeshwar", "Software programmer", 45000);
-
-                //accessing employee properties using index, i.e. position
-                Console.WriteLine("EID = " + emp[0]);
-                Console.WriteLine("Name = " + emp[1]);
-                Console.WriteLine("Job = " + emp[2]);
-                Console.WriteLine("Salary = " + emp[3]);
-
-                Console.WriteLine("==============Setting Values============");
-                emp[1] = "Nithyasree";
-                emp[2] = "Tester";
-
-                Console.WriteLine("EID = " + emp[0]);
-                Console.WriteLine("Name = " + emp[1]);
-                Console.WriteLine("Job = " + emp[2]);
-                Console.WriteLine("Salary = " + emp[3]);
-
-                //accessing employee properties using s, i.e. property names
-
-                Console.WriteLine("==========Overloaded Indexer=========");
-
-                emp["ID"] = 201;
-                emp["SALARY"] = 50000;
-
-                Console.WriteLine("EID = " + emp["Id"]);
-                Console.WriteLine("Name = " + emp["Name"]);
-                Console.WriteLine("Job = " + emp["Job"]);
-                Console.WriteLine("Salary = " + emp["Salary"]);
-                Console.Read();
-            }
+            get { return _seconds / 3600.0; }
+            set { _seconds = (int)(value * 3600); }
         }
+
+        public override string ToString()
+        {
+            return string.Format("{0:F2} hours or {1} seconds", Hours, _seconds);
+        }
+    }
+    public abstract class Furniture
+    {
+        public string Name { get; set; }
+        public string Material { get; set; }
+        public double Price { get; set; }
+
+        public Furniture(string name, string material, double price)
+        {
+            Name = name;
+            Material = material;
+            Price = price;
+        }
+
+        public abstract void DisplayInfo();
+        public abstract double CalculateCost();
+    }
+
+    // Chair subclass
+    public class Chair : Furniture
+    {
+        public int Legs { get; set; }
+        public int Armrests { get; set; }
+
+        public Chair(string material, double price, int legs, int armrests)
+            : base("Chair", material, price)
+        {
+            Legs = legs;
+            Armrests = armrests;
+        }
+
+        public override void DisplayInfo()
+        {
+            Console.WriteLine($"Chair Material: {Material}, Legs: {Legs}, Armrests: {Armrests}, Price: {Price}");
+        }
+
+        public override double CalculateCost()
+        {
+            return Price + (Legs * 5) + (Armrests * 10);
+        }
+    }
+
+    // Bookshelf subclass
+    public class Bookshelf : Furniture
+    {
+        public int Shelves { get; set; }
+        public int Compartments { get; set; }
+
+        public Bookshelf(string material, double price, int shelves, int compartments)
+            : base("Bookshelf", material, price)
+        {
+            Shelves = shelves;
+            Compartments = compartments;
+        }
+
+        public override void DisplayInfo()
+        {
+            Console.WriteLine($"Bookshelf Material: {Material}, Shelves: {Shelves}, Compartments: {Compartments}, Price: {Price}");
+        }
+
+        public override double CalculateCost()
+        {
+            return Price + (Shelves * 15) + (Compartments * 20);
+        }
+    }
+    // Example usage
+    public class Program
+    {
+        public static void Main()
+        {
+            TimePeriod time = new TimePeriod();
+            time.Hours = 5;  
+            Console.WriteLine(time);  
+
+            time = new TimePeriod(7685);  
+            Console.WriteLine(time.Hours);
+
+            Chair chair = new Chair("Wood", 50, 4, 2);
+            chair.DisplayInfo();  
+            Console.WriteLine("Chair Cost: " + chair.CalculateCost());  
+
+            Bookshelf bookshelf = new Bookshelf("Metal", 100, 5, 3);
+            bookshelf.DisplayInfo();  
+            Console.WriteLine("Bookshelf Cost: " + bookshelf.CalculateCost());
+        }
+    }
+
 }
