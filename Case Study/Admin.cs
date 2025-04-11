@@ -31,7 +31,7 @@ namespace CarConnect
 
         public bool Authenticate(string password)
         {
-            return Password == password; // Replace with hashing in production.
+            return Password == password; 
         }
     }
 }
